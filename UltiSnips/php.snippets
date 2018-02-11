@@ -14,140 +14,123 @@ endglobal
 
 snippet gm "PHP Class Getter" b
 /**
- * Getter for $1
+ * Récupère $1
  *
- * @return ${2:string}
+ * @return ${2:string} ${3:Description}
  */
-public function get${1/\w+\s*/\u$0/}()`!p snip.rv = ': '+t[2] if isPHPScalarTypesEnabled() else ''`
+public function get${4/\w+\s*/\u$0/}()`!p snip.rv = ': '+t[2] if isPHPScalarTypesEnabled() else ''`
 {
-    return $this->$1;
+	$0
+
+    return $this->$4;
 }
 endsnippet
 
 snippet sm "PHP Class Setter" b
 /**
- * Setter for $1
+ * Définit $1
  *
- * @param ${2:string} $$1
- * @return ${3:`!p snip.rv=snip.basename`}
+ * @param ${2:string} $$3 ${4:Descrption}
+ *
+ * @return ${5:self} ${6:L'objet actuel.}
  */
-public function set${1/\w+\s*/\u$0/}(${4:${2/(void|string|int|integer|double|float|object|boolear|null|mixed|number|resource)|(.*)/(?1::$2 )/}}$$1)
+public function set${3/\w+\s*/\u$0/}(${7:${2/(void|string|int|integer|double|float|object|boolear|null|mixed|number|resource)|(.*)/(?1::$2 )/}}$$3)
 {
-    $this->$1 = $$1;
+    $this->$3 = $$3;
 
-    ${5:return $this;}
+	$0
+
+    ${8:return $this;}
 }
 endsnippet
 
 snippet gs "PHP Class Getter Setter" b
 /**
- * Getter for $1
+ * Récupère $1
  *
- * @return ${2:string}
+ * @return ${2:string} ${3:Description}
  */
-public function get${1/\w+\s*/\u$0/}()`!p snip.rv = ': '+t[2] if isPHPScalarTypesEnabled() else ''`
+public function get${4/\w+\s*/\u$0/}()`!p snip.rv = ': '+t[2] if isPHPScalarTypesEnabled() else ''`
 {
-    return $this->$1;
+    return $this->$4;
 }
 
 /**
- * Setter for $1
+ * Définit $1
  *
- * @param $2 $$1
- * @return ${3:`!p snip.rv=snip.basename`}
+ * @param $2 $$4 $3
+ *
+ * @return ${5:self} ${6:L'objet actuel.}
  */
-public function set${1/\w+\s*/\u$0/}(${4:${2/(void|string|int|integer|double|float|object|boolear|null|mixed|number|resource)|(.*)/(?1::$2 )/}}$$1)
+public function set${4/\w+\s*/\u$0/}(${7:${2/(void|string|int|integer|double|float|object|boolear|null|mixed|number|resource)|(.*)/(?1::$2 )/}}$$4)
 {
-    $this->$1 = $$1;
+    $this->$4 = $$4;
 
-    ${5:return $this;}
+    ${8:return $this;}
 }
 endsnippet
 
 snippet pub "Public function" b
-/**
- * ${3:undocumented function}
- *
- * @return ${4:void}
- */
 public function ${1:name}(${2:$param})
 {
-	${VISUAL}${5:return null;}
+	$0
+
+	return ${VISUAL}${5:$this;}
 }
-$0
 endsnippet
 
 snippet pro "Protected function" b
-/**
- * ${3:undocumented function}
- *
- * @return ${4:void}
- */
 protected function ${1:name}(${2:$param})
 {
-	${VISUAL}${5:return null;}
+	$0
+
+	return ${VISUAL}${5:$this;}
 }
-$0
 endsnippet
 
 snippet pri "Private function" b
-/**
- * ${3:undocumented function}
- *
- * @return ${4:void}
- */
 private function ${1:name}(${2:$param})
 {
-	${VISUAL}${5:return null;}
+	$0
+
+	return ${VISUAL}${5:$this;}
 }
-$0
 endsnippet
 
 snippet pubs "Public static function" b
-/**
- * ${3:undocumented function}
- *
- * @return ${4:void}
- */
 public static function ${1:name}(${2:$param})
 {
-	${VISUAL}${5:return null;}
+	$0
+
+	return ${VISUAL}${5:$this;}
 }
-$0
 endsnippet
 
 snippet pros "Protected static function" b
-/**
- * ${3:undocumented function}
- *
- * @return ${4:void}
- */
 protected static function ${1:name}(${2:$param})
 {
-	${VISUAL}${5:return null;}
+	$0
+
+	return ${VISUAL}${5:$this;}
 }
-$0
 endsnippet
 
 snippet pris "Private static function" b
-/**
- * ${3:undocumented function}
- *
- * @return ${4:void}
- */
 private static function ${1:name}(${2:$param})
 {
-	${VISUAL}${5:return null;}
+	$0
+
+	return ${VISUAL}${5:$this;}
 }
-$0
 endsnippet
 
 snippet fu "Function snip" b
 function ${1:name}(${2:$param})
 {
-	${VISUAL}${3:return null;}
+	$0
+
+	${VISUAL}${3:return $this;}
 }
-$0
 endsnippet
 
 snippet new "New class instance" b
@@ -167,19 +150,14 @@ endsnippet
 snippet class "Class declaration template" b
 <?php
 
-namespace ${1:`!p
-relpath = os.path.relpath(path)
-m = re.search(r'[A-Z].+(?=/)', relpath)
-if m:
-	snip.rv = m.group().replace('/', '\\')
-`};
-
 /**
  * Class ${1:`!p snip.rv=snip.basename`}
+ *
  * @author ${2:`!v g:snips_author`}
  */
 class $1
 {
+    $0
 }
 endsnippet
 
@@ -281,6 +259,10 @@ snip.rv = re.match(r'.*(?=\.)', fn).group()
 		${0:${VISUAL}}
 	}
 }
+endsnippet
+
+snippet require "require_once dirname(__FILE__) . '{ ... }';"
+require_once dirname(__FILE__) . '/$0';
 endsnippet
 
 # :vim:ft=snippets:
