@@ -20,10 +20,8 @@ snippet gm "PHP Class Getter" b
  */
 public function get${4/\w+\s*/\u$0/}()`!p snip.rv = ': '+t[2] if isPHPScalarTypesEnabled() else ''`
 {
-	$0
-
     return $this->$4;
-}
+}$0
 endsnippet
 
 snippet sm "PHP Class Setter" b
@@ -38,10 +36,8 @@ public function set${3/\w+\s*/\u$0/}(${7:${2/(void|string|int|integer|double|flo
 {
     $this->$3 = $$3;
 
-	$0
-
     ${8:return $this;}
-}
+}$0
 endsnippet
 
 snippet gs "PHP Class Getter Setter" b
@@ -67,7 +63,7 @@ public function set${4/\w+\s*/\u$0/}(${7:${2/(void|string|int|integer|double|flo
     $this->$4 = $$4;
 
     ${8:return $this;}
-}
+}$0
 endsnippet
 
 snippet pub "Public function" b
@@ -75,7 +71,7 @@ public function ${1:name}(${2:$param})
 {
 	$0
 
-	return ${VISUAL}${5:$this;}
+	return ${VISUAL}${5:$this};
 }
 endsnippet
 
@@ -84,7 +80,7 @@ protected function ${1:name}(${2:$param})
 {
 	$0
 
-	return ${VISUAL}${5:$this;}
+	return ${VISUAL}${5:$this};
 }
 endsnippet
 
@@ -93,7 +89,7 @@ private function ${1:name}(${2:$param})
 {
 	$0
 
-	return ${VISUAL}${5:$this;}
+	return ${VISUAL}${5:$this};
 }
 endsnippet
 
@@ -102,7 +98,7 @@ public static function ${1:name}(${2:$param})
 {
 	$0
 
-	return ${VISUAL}${5:$this;}
+	return ${VISUAL}${5:$this};
 }
 endsnippet
 
@@ -111,7 +107,7 @@ protected static function ${1:name}(${2:$param})
 {
 	$0
 
-	return ${VISUAL}${5:$this;}
+	return ${VISUAL}${5:$this};
 }
 endsnippet
 
@@ -120,7 +116,7 @@ private static function ${1:name}(${2:$param})
 {
 	$0
 
-	return ${VISUAL}${5:$this;}
+	return ${VISUAL}${5:$this};
 }
 endsnippet
 
@@ -129,7 +125,7 @@ function ${1:name}(${2:$param})
 {
 	$0
 
-	${VISUAL}${3:return $this;}
+	return ${VISUAL}${3:null};
 }
 endsnippet
 
@@ -157,7 +153,7 @@ snippet class "Class declaration template" b
  */
 class $1
 {
-    $0
+	$0
 }
 endsnippet
 
@@ -173,6 +169,7 @@ if m:
 
 /**
  * Interface ${1:`!p snip.rv=snip.basename`}
+ *
  * @author ${2:`!v g:snips_author`}
  */
 interface $1
@@ -262,7 +259,7 @@ snip.rv = re.match(r'.*(?=\.)', fn).group()
 endsnippet
 
 snippet require "require_once dirname(__FILE__) . '{ ... }';"
-require_once dirname(__FILE__) . '/$0';
+require_once dirname(__FILE__) . '$0$1';
 endsnippet
 
 # :vim:ft=snippets:
