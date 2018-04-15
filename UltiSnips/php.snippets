@@ -258,6 +258,16 @@ snip.rv = re.match(r'.*(?=\.)', fn).group()
 }
 endsnippet
 
+snippet test "public function it_should_{ ... }'"
+/**
+ * @test
+ */
+public function it_should_$1()
+{
+	${0:${VISUAL}}
+}
+endsnippet
+
 snippet require "require_once dirname(__FILE__) . '{ ... }';"
 require_once dirname(__FILE__) . '$0$1';
 endsnippet
